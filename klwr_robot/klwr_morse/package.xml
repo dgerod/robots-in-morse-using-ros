@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+    <name>klwr_morse</name>
+    
+    <version>0.0.1</version>
+    <description>
+        The klwr_morse package
+    </description>
+    <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+    <license>BSD</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>message_generation</build_depend>
+    <run_depend>message_runtime</run_depend>
+    <run_depend>morse_ros</run_depend>
+
+</package>

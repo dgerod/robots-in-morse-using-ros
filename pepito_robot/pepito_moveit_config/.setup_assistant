@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: pepito_description
+    relative_path: urdf/pepito.urdf
+  SRDF:
+    relative_path: config/pepito.srdf
+  CONFIG:
+    author_name: Diego Escudero
+    author_email: dgerod@xyz-lab.org.es
+    generated_timestamp: 1485361938

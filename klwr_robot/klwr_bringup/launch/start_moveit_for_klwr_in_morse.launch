@@ -1,0 +1,6 @@
+<launch>
+  
+  <!-- Start MoveIt and connect to simulated Kuka LWR in Morse -->
+  <include file="$(find klwr_moveit_config)/launch/start_moveit_for_robot_in_morse.launch"/>
+                  
+</launch>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+    <name>klwr_robot</name>
+
+    <version>0.0.1</version>
+    <description>
+        The klwr_robot package
+    </description>
+    <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+    <license>BSD</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <run_depend>klwr_bringup</run_depend>
+    <run_depend>klwr_base</run_depend>
+    <run_depend>klwr_description</run_depend>
+    <run_depend>klwr_ik</run_depend>
+    <run_depend>klwr_controller</run_depend>
+    <run_depend>klwr_moveit_config</run_depend>
+    <run_depend>klwr_morse</run_depend>
+    <run_depend>klwr_tools</run_depend>
+        
+    <export>
+        <metapackage/>
+    </export>
+</package>

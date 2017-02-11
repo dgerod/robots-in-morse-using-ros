@@ -1,0 +1,5 @@
+<launch>
+  
+  <include file="$(find pepito_moveit_config)/launch/start_moveit_for_robot_in_morse.launch"/>
+                  
+</launch>

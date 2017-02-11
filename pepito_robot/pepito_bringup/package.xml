@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+    <name>pepito_bringup</name>
+
+    <version>0.0.1</version>
+    <description>
+        The pepito_bringup package
+    </description>
+    <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+    <license>BSD</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+</package>

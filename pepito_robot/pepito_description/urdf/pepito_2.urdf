@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="pepito">
+
+    <!-- JIDO BASE -->
+
+    <include filename="$(find pepito_description)/urdf/jido.urdf"/>
+
+    <!-- KUKA LWR ARM -->
+
+    <include filename="$(find pepito_description)/urdf/materials.xml"/>
+    <include filename="$(find pepito_description)/urdf/kuka_lwr.urdf"/>
+
+    <!-- Transformation from Platform base to Arm base -->
+    <property name="base_to_arm_x"     value="0.176" />
+    <property name="base_to_arm_y"     value="0.178" />
+    <property name="base_to_arm_z"     value="0.9" />
+    <property name="base_to_arm_roll"  value="1.571" />
+    <property name="base_to_arm_pitch" value="0" />
+    <property name="base_to_arm_yaw"   value="0" />
+
+    <joint name='pepito_base' type='fixed'>
+        <parent link='base_link' />
+        <child link='kuka_link_footprint'>
+        <origin xyz="${base_to_arm_x} ${base_to_arm_y} ${base_to_arm_z}"
+                rpy="${base_to_arm_roll} ${base_to_arm_pitch} ${base_to_arm_yaw}"/>
+    </joint>
+
+</robot>

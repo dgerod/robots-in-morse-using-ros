@@ -1,0 +1,4 @@
+<launch>
+    <!-- send pepito to param server -->
+    <param name="robot_description" command="cat $(find pepito_description)/urdf/pepito.urdf" />
+</launch>

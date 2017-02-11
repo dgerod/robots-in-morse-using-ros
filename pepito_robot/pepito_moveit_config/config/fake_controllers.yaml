@@ -1,0 +1,16 @@
+controller_list:
+
+  - name: fake_arm
+    joints:
+      - kuka_joint_1
+      - kuka_joint_2
+      - kuka_joint_3
+      - kuka_joint_4
+      - kuka_joint_5
+      - kuka_joint_6
+      - kuka_joint_7
+
+  - name: fake_head
+    joints:
+      - jido_head_pan_joint
+      - jido_head_tilt_joint

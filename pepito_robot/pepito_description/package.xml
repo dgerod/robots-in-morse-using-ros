@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+    <name>pepito_description</name>
+
+    <version>0.0.1</version>
+    <description>
+        This package contains URDF and XACRO Files for Pepito robot.
+    </description>
+    <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+    <license>BSD</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>xacro</build_depend>
+    <run_depend>xacro</run_depend>
+
+</package>
