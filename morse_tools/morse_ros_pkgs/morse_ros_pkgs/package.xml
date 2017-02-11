@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+    <name>morse_ros_pkgs</name>
+    <version>0.0.0</version>
+    <description>Interface for using ROS with the MORSE.</description>
+
+    <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+    <author>Diego Escudero</author>
+    <license>TODO</license>
+
+    <url type="morse">https://www.openrobots.org/morse/doc/stable/morse.html</url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <run_depend>morse_msgs</run_depend>
+    <run_depend>morse_ros</run_depend>
+
+    <export>
+        <metapackage/>
+    </export>
+</package>

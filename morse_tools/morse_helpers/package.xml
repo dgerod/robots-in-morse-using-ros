@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>morse_helpers</name>
+  <version>0.0.0</version>
+  <description>The morse_helpers package</description>
+
+  <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+  <author>Diego Escudero</author>
+  <license>TODO</license>
+    
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>
