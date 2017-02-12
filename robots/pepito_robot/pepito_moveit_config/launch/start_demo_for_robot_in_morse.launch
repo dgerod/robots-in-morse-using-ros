@@ -23,7 +23,7 @@
   -->
   
   <arg name="/joint_states" />
-  <remap from="/joint_states" to="/klwr/joint_states"/>
+  <remap from="/joint_states" to="/pepito/arm/joint_states"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
   
   <!-- Run the main MoveIt executable -->
