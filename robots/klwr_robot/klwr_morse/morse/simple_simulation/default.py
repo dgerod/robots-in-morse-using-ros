@@ -1,15 +1,13 @@
-#! /usr/bin/env morseexec
 # =======================================================================================
-# Experiment using MORSE 
+# Kuka LWR with ROS
 # =======================================================================================
 
-import simple_simulation.helpers.morse_local_config as exp_settings
-from simple_simulation.helpers import adapters
+from morse_helpers import morse_local_config as local_settings
+local_settings.configure_simulation(__file__)
+from morse_helpers.storage import FileStorage
+from morse_helpers.adapters import ROSRegister
 
-from builder import environment
 from morse.builder import Environment
-from morse.core.morse_time import TimeStrategies
-
 from morse.builder import FakeRobot
 from morse.builder.actuators import KukaLWR
 from morse.builder.sensors import ArmaturePose
@@ -33,25 +31,16 @@ def create_simulation():
     # Set-up ROS connection 
     # ----------------------------------------------------------
     
-    topic_base_name = "/" + robot.name + "/"
     robot.add_default_interface('ros')
-    
-    # Arm - follow_joint_trajectory + joint_state ---
-    
-    adapters.register_ros_topic(arm_pose, 
-                                name = ("klwr/joint_states"),
-                                topic_class = 'JointStatePublisher' )
-     
-    adapters.register_ros_action(arm, 
-                                 name = ("klwr"),
-                                 action_class = 'ArmControllerByActions' )
-    
+
+    ROSRegister.add_topic(arm_pose, "klwr/joint_states", "ArmStatePublisher")
+    ROSRegister.add_controller(arm, "klwr", "ArmCtrlByActions")
+
     # Environment 
     # ----------------------------------------------------------
     
-    env = Environment( exp_settings.environment_dir + "empty_world.blend")
-    env.set_camera_location([10.0, -10.0, 10.0])
-    env.set_camera_rotation([1.0470, 0, 0.7854])
+    env = Environment(FileStorage.find("empty_world.blend"))
+    env.set_camera_location([2.0, -2.0, 4.0])
 
     env.show_framerate(True)
     
