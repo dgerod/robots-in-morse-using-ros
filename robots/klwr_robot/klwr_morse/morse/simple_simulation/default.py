@@ -22,8 +22,7 @@ def create_simulation():
     robot = FakeRobot() 
     robot.name = "kuka_lwr"
 
-    # Add robot arm to the robot 
-    arm = KukaLWR()    
+    arm = KukaLWR()
     arm_pose = ArmaturePose()
     arm.append(arm_pose)        
     robot.append(arm)    
