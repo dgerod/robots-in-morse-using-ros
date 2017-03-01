@@ -3,17 +3,6 @@
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
 
-  jido_head_pan_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
-  jido_head_tilt_joint:
-    has_velocity_limits: false
-    max_velocity: 0
-    has_acceleration_limits: false
-    max_acceleration: 0
-
   kuka_joint_1:
     has_velocity_limits: true
     max_velocity: 1.9634

@@ -56,7 +56,6 @@
     <disable_collisions link1="kuka_link_5" link2="kuka_link_6" reason="Adjacent" />
     <disable_collisions link1="kuka_link_5" link2="kuka_link_7" reason="Never" />
     <disable_collisions link1="kuka_link_6" link2="kuka_link_7" reason="Adjacent" />
-    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference
-        (considered fixed with respect to the robot)-->
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="planar" parent_frame="odom" child_link="jido_base_footprint" />
 </robot>

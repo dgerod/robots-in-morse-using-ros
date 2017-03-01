@@ -1,3 +1,3 @@
 <launch>
-    <param name="robot_description" command="cat $(find pepito_description)/urdf/pepito_config_up.urdf" />
+    <param name="robot_description" command="cat $(find pepito_description)/urdf/pepito_arm-up_no-head.urdf" />
 </launch>
