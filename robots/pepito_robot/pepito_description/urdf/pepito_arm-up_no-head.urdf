@@ -3,25 +3,25 @@
 
     <!-- JIDO BASE -->
 
-    <link name="jido_base_footprint" />
-    <link name="jido_base_link">
+    <link name="jido_link_footprint" />
+    <link name="jido_link_base">
     <visual>
         <origin xyz="0 0 0.20" rpy="0 0 0" />
         <geometry><box size="0.65 0.65  0.40"/> </geometry>
         <material name="blue"><color rgba="0 0 0.8 1.0"/></material>
     </visual>
     </link>
-    <link name="jido_base_laser_link" />
+    <link name="jido_link_laser" />
 
-    <joint name="jido_base_joint" type="fixed">
-        <parent link="jido_base_footprint"/>
-        <child link="jido_base_link"/>
+    <joint name="jido_joint_base" type="fixed">
+        <parent link="jido_link_footprint"/>
+        <child link="jido_link_base"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
 
-    <joint name="jido_laser_joint" type="fixed">
-        <parent link="jido_base_link"/>
-        <child link="jido_base_laser_link"/>
+    <joint name="jido_joint_laser" type="fixed">
+        <parent link="jido_link_base"/>
+        <child link="jido_link_laser"/>
         <origin xyz="0.37 0 0.3" rpy="0 0 0" />
     </joint>
 
@@ -183,7 +183,7 @@
 
     <joint name="pepito_base" type="fixed">
         <origin xyz="0.2 -0.15 0.6" rpy="0 0 3.142" />
-        <parent link="jido_base_link"/>
+        <parent link="jido_link_base"/>
         <child link="kuka_link_footprint"/>
     </joint>
 

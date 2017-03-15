@@ -18,10 +18,11 @@ class SmartCameraPublisher(adapters.ROSPublisherTF):
     And send TF transform between '/map' and ``object.name``.
     """
     ros_class = String
+    default_frame_id = '/map'
 
     def initialize(self):
         if not self.component_instance.relative:
-            self.default_frame_id = '/map'
+            self.default_frame_id = self.kwargs.get("frame_id", SmartCameraPublisher.default_frame_id)
         super().initialize()
 
     def default(self, ci='unused'):
@@ -33,7 +34,7 @@ class SmartCameraPublisher(adapters.ROSPublisherTF):
         string.data = json.dumps(self.data['visible_objects'], cls=MorseEncoder)
         self.publish(string)
 
-class SmartCameraController(adapters.ROSController):
+class SmartCameraCtrlByServices(adapters.ROSController):
 
     def __init__(self, overlaid_object, namespace = None):
         super().__init__(overlaid_object)
@@ -54,7 +55,7 @@ class SmartCameraController(adapters.ROSController):
     @adapters.ros_service(type = GetObjects)
     def get_objects(self):        
         
-        logger.info("[SmartCameraController::get_objects] BEGIN")
+        logger.info("[SmartCameraController::get_objects] Begin")
 
         names = []
         types = []
@@ -72,7 +73,7 @@ class SmartCameraController(adapters.ROSController):
             pose.orientation = obj['orientation']
             poses.append(pose)
           
-        logger.info("[SmartCameraController::get_objects] END")        
+        logger.info("[SmartCameraController::get_objects] End")
         return (names, types, poses)
     
     # ------------------------------------------------------
@@ -80,23 +81,25 @@ class SmartCameraController(adapters.ROSController):
     @adapters.ros_service(type = FindObject)
     def find_object(self, req):        
         
-        logger.info("SmartCameraController::find_object")
-        
+        logger.info("[SmartCameraController::find_object] Begin")
+
         success = False
         type = String()
         pose = Pose()
 
-        name = req.data                
+        name = req.data
+        logger.info("Looking for object: " + name)
+
         for obj in self.overlaid_object.local_data['visible_objects']:
+
             logger.info("Object: " + str(obj['name']))
-            if str(obj['name']) == name:                
+            if str(obj['name']) == name:
                 pose.position = obj['position']
                 pose.orientation = obj['orientation']  
                 type = String(obj['type'])
                 success = True
                 break
 
+        logger.info("Type: " + str(type))
+        logger.info("[SmartCameraController::find_object] End")
         return (success, type, pose)
-
-    def find_object_result(self, result):
-        return result

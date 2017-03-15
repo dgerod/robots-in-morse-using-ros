@@ -1,6 +1,5 @@
 import logging; logger = logging.getLogger("morse."+ __name__)
 
-import roslib, rospy
 from morse.core.services import interruptible
 from morse.core import status
 from morse.core.exceptions import MorseServiceError

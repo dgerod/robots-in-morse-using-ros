@@ -1,4 +1,5 @@
 import logging; logger = logging.getLogger("morse."+ __name__)
+
 import roslib, rospy
 
 from morse_helpers import adapters
