@@ -3,42 +3,42 @@
 
     <!-- JIDO BASE -->
 
-    <link name="jido_base_footprint" />
-    <link name="jido_base_link">
+    <link name="jido_link_footprint" />
+    <link name="jido_link_base">
     <visual>
         <origin xyz="0 0 0.20" rpy="0 0 0" />
         <geometry><box size="0.65 0.65  0.40"/> </geometry>
         <material name="blue"><color rgba="0 0 0.8 1.0"/></material>
     </visual>
     </link>
-    <link name="jido_base_laser_link" />
-    <link name="jido_head_pan_link" />
-    <link name="jido_head_tilt_link" />
+    <link name="jido_link_laser" />
+    <link name="jido_link_head_pan_" />
+    <link name="jido_link_head_tilt" />
 
-    <joint name="jido_base_joint" type="fixed">
-        <parent link="jido_base_footprint"/>
-        <child link="jido_base_link"/>
+    <joint name="jido_joint_base" type="fixed">
+        <parent link="jido_link_footprint"/>
+        <child link="jido_link_base"/>
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
 
-    <joint name="jido_laser_joint" type="fixed">
-        <parent link="jido_base_link"/>
-        <child link="jido_base_laser_link"/>
+    <joint name="jido_joint_laser" type="fixed">
+        <parent link="jido_link_base"/>
+        <child link="jido_link_laser"/>
         <origin xyz="0.37 0 0.3" rpy="0 0 0" />
     </joint>
 
-    <joint name="jido_head_pan_joint" type="continuous">
+    <joint name="jido_joint_head_pan" type="continuous">
         <axis xyz="0 0 1" />
         <origin xyz="0.239 0 1.185" rpy="0 0 0" />
-        <parent link="jido_base_link"/>
-        <child link="jido_head_pan_link"/>
+        <parent link="jido_link_base"/>
+        <child link="jido_link_head_pan"/>
     </joint>
 
-    <joint name="jido_head_tilt_joint" type="continuous">
+    <joint name="jido_joint_head_tilt" type="continuous">
         <axis xyz="0 1 0" />
         <origin xyz="0 0 0.02" rpy="0 0 0" />
-        <parent link="jido_head_pan_link"/>
-        <child link="jido_head_tilt_link"/>
+        <parent link="jido_link_head_pan"/>
+        <child link="jido_link_head_tilt"/>
     </joint>
 
     <!-- KUKA LWR ARM -->
@@ -195,10 +195,11 @@
         <child link="kuka_link_tcp"/>
     </joint>
 
-    <!-- Transformation from Platform base to Arm base -->
+    <!-- TRANSFORMATION FROM JIDO BASE TO ARM BASE -->
+
     <joint name="pepito_base" type="fixed">
         <origin xyz="0.176 0.178 0.9" rpy="1.571 3.142 0" />
-        <parent link="jido_base_link"/>
+        <parent link="jido_link_base"/>
         <child link="kuka_link_footprint"/>
     </joint>
 

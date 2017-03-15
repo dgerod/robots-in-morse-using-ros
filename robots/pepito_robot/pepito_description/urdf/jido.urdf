@@ -1,37 +1,37 @@
 <?xml version="1.0"?>
 <robot name="Jido">
 
-  <link name="base_footprint" />
-  <link name="base_link" />
-  <link name="base_laser_link" />
-  <link name="head_pan_link" />
-  <link name="head_tilt_link" />
-  
-  <joint name="base_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
+   <link name="jido_link_footprint" />
+    <link name="jido_link_base" />
+    <link name="jido_link_laser" />
+    <link name="jido_link_head_pan_" />
+    <link name="jido_link_head_tilt" />
 
-  <joint name="laser_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="base_laser_link"/>
-    <origin xyz="0.37 0 0.3" rpy="0 0 0" />
-  </joint>
+    <joint name="jido_joint_base" type="fixed">
+        <parent link="jido_link_footprint"/>
+        <child link="jido_link_base"/>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
 
-  <joint name="head_pan_joint" type="continuous">
-    <axis xyz="0 0 1" />
-    <origin xyz="0.239 0 1.185" rpy="0 0 0" />
-    <parent link="base_link"/>
-    <child link="head_pan_link"/>
-  </joint>
+    <joint name="jido_joint_laser" type="fixed">
+        <parent link="jido_link_base"/>
+        <child link="jido_link_laser"/>
+        <origin xyz="0.37 0 0.3" rpy="0 0 0" />
+    </joint>
 
-  <joint name="head_tilt_joint" type="continuous">
-    <axis xyz="0 1 0" />
-    <origin xyz="0 0 0.02" rpy="0 0 0" />
-    <parent link="head_pan_link"/>
-    <child link="head_tilt_link"/>
-  </joint>
+    <joint name="jido_joint_head_pan" type="continuous">
+        <axis xyz="0 0 1" />
+        <origin xyz="0.239 0 1.185" rpy="0 0 0" />
+        <parent link="jido_link_base"/>
+        <child link="jido_link_head_pan"/>
+    </joint>
+
+    <joint name="jido_joint_head_tilt" type="continuous">
+        <axis xyz="0 1 0" />
+        <origin xyz="0 0 0.02" rpy="0 0 0" />
+        <parent link="jido_link_head_pan"/>
+        <child link="jido_link_head_tilt"/>
+    </joint>
 
 </robot>
 
