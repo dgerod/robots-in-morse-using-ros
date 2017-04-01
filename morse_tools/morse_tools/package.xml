@@ -1,0 +1,16 @@
+<package>
+  <name>morse_tools</name>
+  <version>0.0.1</version>
+  <description>Interesting MORSE tools</description>
+  <license>BSD</license>
+  <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>catkin_helpers</run_depend>
+  <run_depend>morse_helpers</run_depend>
+  <run_depend>morse_ros_pkgs</run_depend>
+      
+  <export>
+    <metapackage/>
+  </export>
+</package>
