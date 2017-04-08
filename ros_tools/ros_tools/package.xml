@@ -1,0 +1,17 @@
+<package>
+  <name>ros_tools</name>
+  <version>0.0.1</version>
+  <description>Interesting ROS tools</description>
+  <license>BSD</license>
+  <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>catkin_helpers</run_depend>
+  <run_depend>bag_tools</run_depend>
+  <run_depend>node_tools</run_depend>
+  <run_depend>teleop_tools</run_depend>
+      
+  <export>
+    <metapackage/>
+  </export>
+</package>
