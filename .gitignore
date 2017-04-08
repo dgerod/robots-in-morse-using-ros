@@ -1,3 +1,4 @@
+*~
 *.pyc
 *.o
 *.so
@@ -6,6 +7,7 @@
 *msg_gen
 *srv_gen
 *bin
-*~
-
+*/CMakeFiles/
+.idea
+*/.idea/*
 
