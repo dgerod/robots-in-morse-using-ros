@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-    <name>morse_msgs</name>
+    <name>morse_comms</name>
     <version>0.0.0</version>
     <description>Messages used by MORSE.</description>
 
