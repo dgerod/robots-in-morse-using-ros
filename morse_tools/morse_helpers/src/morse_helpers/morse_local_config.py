@@ -41,20 +41,10 @@ def configure_simulation(filePath):
     simulation_name = os.path.basename(simulation_path)
     simulation_path = simulation_path + "/"
 
-    #print(helpers_dir)
-    #print("Simulation")
-    #print(" - Name: ", simulation_name)
-    #print(" - Path: ", simulation_path)
-
     # Mount structure of directories used by the simulation.
     objects_dir = simulation_name + '/props/'
     environment_dir = simulation_name + '/environments/'
     
-    # Middleware location based on directory.
-    #mw_dir = simulation_name + '/middleware_ros/'
-    #mw_loc = mw_dir
-    #mw_loc = mw_loc.replace("/", ".")
-
     # Middleware location based on directory.
     mw_dir, mw_loc = _prep_middleware_data()
     mw_loc = "morse_ros.middleware."
