@@ -11,7 +11,7 @@
     <url type="morse">https://www.openrobots.org/morse/doc/stable/morse.html</url>
 
     <buildtool_depend>catkin</buildtool_depend>
-    <run_depend>morse_msgs</run_depend>
+    <run_depend>morse_comms</run_depend>
     <run_depend>morse_ros</run_depend>
 
     <export>
