@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package>
-    <name>pepito_morse</name>
-    
+    <name>pepito_services</name>
+
     <version>0.0.1</version>
     <description>
-        The pepito_morse package
+        Control services provided by Pepito robot.
     </description>
 
     <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>

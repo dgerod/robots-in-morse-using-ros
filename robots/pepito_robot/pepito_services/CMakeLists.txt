@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(pepito_morse)
+project(pepito_services)
 
 find_package(catkin REQUIRED COMPONENTS rospy std_msgs)
 

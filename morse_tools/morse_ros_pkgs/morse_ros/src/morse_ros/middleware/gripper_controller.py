@@ -6,7 +6,8 @@ from morse.core.exceptions import MorseServiceError
 from morse_helpers import adapters
 
 from std_srvs.srv import Trigger
-from anchoring_msgs.msg import DropObjectAction, DropObjectResult, DropObjectFeedback
+from morse_comms.msg import OpenGripperAction, OpenGripperResult, OpenGripperFeedback
+from morse_comms.msg import CloseGripperAction, CloseGripperResult, CloseGripperFeedback
 
 class GripperCtrlByServices(adapters.ROSController):
 
@@ -15,6 +16,7 @@ class GripperCtrlByServices(adapters.ROSController):
         self.namespace = namespace
         name = adapters.morse_to_ros_namespace(self.name())
 
+    @staticmethod
     def _stamp_to_secs(self, stamp):
         return stamp.secs + stamp.nsecs / 1e9
 
@@ -24,18 +26,19 @@ class GripperCtrlByServices(adapters.ROSController):
         else:
             return super().name()
 
+    # Services
     # ------------------------------------------------------
     
-    @adapters.ros_service(type = Trigger)
+    @adapters.ros_service(type=Trigger)
     def close(self):        
         name = self.overlaid_object.grab()
-        ret = (name != None)
-        return (ret, name)
+        ret = (name is None)
+        return ret, name
     
-    @adapters.ros_service(type = Trigger)
+    @adapters.ros_service(type=Trigger)
     def open(self):
         ret = self.overlaid_object.release()
-        return (ret, "")
+        return ret, ""
 
 
 class GripperCtrlByActions(adapters.ROSController):
@@ -45,6 +48,7 @@ class GripperCtrlByActions(adapters.ROSController):
         self.namespace = namespace
         name = adapters.morse_to_ros_namespace(self.name())
 
+    @staticmethod
     def _stamp_to_secs(self, stamp):
         return stamp.secs + stamp.nsecs / 1e9
 
@@ -54,15 +58,25 @@ class GripperCtrlByActions(adapters.ROSController):
         else:
             return super().name()
 
+    # Actions
     # ------------------------------------------------------
     
     @interruptible
-    @adapters.ros_action(type = DropObjectAction)
-    def drop_object(self, req):
+    @adapters.ros_action(type = OpenGripperAction)
+    def close(self, req):
         self.overlaid_object.trajectory(
-                self.chain_callback(self.drop_object_result), DropObjectResult)
+                self.chain_callback(self.close_result), OpenGripperResult)
 
-    def drop_object_result(self, result):
+    def close_result(self, result):
         return result
-    
+
+    @interruptible
+    @adapters.ros_action(type=CloseGripperAction)
+    def open(self, req):
+        self.overlaid_object.trajectory(
+            self.chain_callback(self.open_result), CloseGripperResult)
+
+    def open_result(self, result):
+        return result
+
     # ------------------------------------------------------
