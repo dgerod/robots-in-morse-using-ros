@@ -1,0 +1,4 @@
+<launch>
+    <!-- send kuka LWR urdf to param server -->
+    <param name="robot_description" command="cat $(find adept_s650_support)/urdf/s650.urdf" />
+</launch>

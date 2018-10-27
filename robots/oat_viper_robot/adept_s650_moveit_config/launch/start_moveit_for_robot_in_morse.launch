@@ -1,0 +1,23 @@
+<launch>
+
+  <!-- By default, we do not start a database (it can be large) -->
+  <arg name="db" default="false" />
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+
+  <include file="$(find adept_s650_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+  
+  <arg name="/joint_states" />
+  <remap from="/joint_states" to="/adept_viper_s650/joint_states"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+ 
+  <include file="$(find adept_s650_moveit_config)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+  
+</launch>
