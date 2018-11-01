@@ -1,72 +1,62 @@
-# =============================================================================
-# Local configuration of the simulation.
-# dgerod@xyz-lab.org.es
-# =============================================================================
-
+import json
 import os, rospkg
 
 # Exported module information
 # ---------------------------------------------
 
-simulation_name = ""
-simulation_path = ""
-environment_dir = "";
-objects_dir = "";
-mw_dir = "";
-mw_loc = "";
+_simulation_name = ""
+_simulation_path = ""
+_environments_directory = ""
+_objects_directory = ""
+_middleware_locations = []
 
-class LocalSettings:
-    pass
 
-# Read and prepare information needed by the simulation
-# ---------------------------------------------
+def _prepare_simulation_basic_information(file_path):
 
-def _prep_middleware_data():
-
-    # Middleware location based on directory.
-    # Remember middleware objects must be added to "__init__.py" of the directory.    
-    rospack = rospkg.RosPack()
-    mw_dir = rospack.get_path('morse_ros') + '/src/morse_ros/middleware/'
-    mw_loc = mw_dir[1:].replace("/", ".")
-    return mw_dir, mw_loc
-
-def configure_simulation(filePath):
-    
-    global simulation_name, simulation_path
-    global objects_dir, environment_dir
-    global mw_dir, mw_loc
-    
     # Configure with the name of the experiment.
-    simulation_path =  os.path.dirname(os.path.abspath(filePath))
+    simulation_path = os.path.dirname(os.path.abspath(file_path))
     simulation_name = os.path.basename(simulation_path)
     simulation_path = simulation_path + "/"
 
-    # Mount structure of directories used by the simulation.
-    objects_dir = simulation_name + '/props/'
-    environment_dir = simulation_name + '/environments/'
-    
-    # Middleware location based on directory.
-    mw_dir, mw_loc = _prep_middleware_data()
-    mw_loc = "morse_ros.middleware."
+    return simulation_path, simulation_name
 
-    _show_info()
-# ---------------------------------------------
 
-def _show_info():
+def _prepare_model_data(simulation_name):
 
-    global simulation_name, simulation_path
-    global objects_dir, environment_dir
-    global mw_dir, mw_loc
- 
-    print("---")
-    print("+ Simulation")
-    print("  - Name: ", simulation_name)
-    print("  - Path: ", simulation_path)
-    print("+ Environments: ", environment_dir)
-    print("+ Objects: ", objects_dir)
-    print("+ Middleware ")
-    print("  - Path: ", mw_dir)
-    print("  - Location: ", mw_loc)
-    print("---")
-    
-# =============================================================================
+    environments_directory = simulation_name + '/environments/'
+    objects_directory = simulation_name + '/props/'
+
+    return environments_directory, objects_directory
+
+
+def _prepare_middleware_data(simulation_path, simulation_name):
+
+    # Middleware location preparation
+    # Remember middleware objects must be added to "__init__.py" of the directory.
+
+    mw_locations = []
+
+    # Middleware location based local simulation
+    directory = "/" + simulation_name + '/runtime/middleware/'
+    class_path = directory[1:].replace("/", ".")
+    mw_locations.append([directory, class_path])
+
+    # Middleware location based on morse_ros packag
+    rospack = rospkg.RosPack()
+    directory = rospack.get_path('morse_ros') + '/src/morse_ros/middleware/'
+    class_path = directory[1:].replace("/", ".")
+    class_path = "morse_ros.middleware."
+    mw_locations.append([directory, class_path])
+
+    return mw_locations
+
+
+def load(file_path):
+
+    global _simulation_path, _simulation_name
+    global _environments_directory, _objects_directory
+    global _middleware_locations
+
+    _simulation_path, _simulation_name = _prepare_simulation_basic_information(file_path)
+    _environments_directory, _objects_directory = _prepare_model_data(_simulation_name)
+    _middleware_locations = _prepare_middleware_data(_simulation_path, _simulation_name)

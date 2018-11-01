@@ -1,39 +1,34 @@
-# =============================================================================
-# Management of the files used in the simulation.
-# dgerod@xyz-lab.org.es
-# =============================================================================
-
 import os.path
 from morse_helpers import morse_local_config as settings
 
+
 class FileStorage:
-    _simulation_name = settings.simulation_name
-    _simulation_path = settings.simulation_path
-    _env_dir = settings.environment_dir;
-    _object_dir = settings.objects_dir; 
 
-    @staticmethod
-    def find(FileName):  
+    def __init__(self):
+        self._load()
+
+    def find(self, file_name):
         
-        if FileName.endswith(".blend"):
-            file_name = FileName
+        if file_name.endswith(".blend"):
+            file_name = file_name
         else:
-            file_name = FileName + ".blend"   
+            file_name = file_name + ".blend"
                        
-        dir_path = FileStorage._simulation_path + "data/" + FileStorage._env_dir
-        print(dir_path)
-        if os.path.isfile(dir_path + file_name) == False:
-            dir_path = FileStorage._simulation_path + "data/" + FileStorage._object_dir
-            print(dir_path)
-            if os.path.isfile(dir_path + file_name) == False:
-                FilePath = file_name
-            else:
-                FilePath = FileStorage._object_dir + file_name;
-        else:
-            FilePath = FileStorage._env_dir + file_name;    
-        
-        print(FilePath)
-        return FilePath
-  
-# =============================================================================
+        directory_path = self._simulation_path + "data/" + self._environments_directory
+        if not os.path.isfile(directory_path + file_name):
 
+            directory_path = self._simulation_path + "data/" + self._objects_directory
+            if not os.path.isfile(directory_path + file_name):
+                abs_file_path = file_name
+            else:
+                abs_file_path = self._objects_directory + file_name
+
+        else:
+            abs_file_path = self._environments_directory + file_name
+
+        return abs_file_path
+
+    def _load(self):
+        self._simulation_path = settings._simulation_path
+        self._environments_directory = settings._environments_directory
+        self._objects_directory = settings._objects_directory
