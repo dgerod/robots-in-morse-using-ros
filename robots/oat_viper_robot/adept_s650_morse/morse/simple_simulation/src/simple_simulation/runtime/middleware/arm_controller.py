@@ -4,7 +4,6 @@ import rospy
 from control_msgs.msg import FollowJointTrajectoryAction
 
 from morse_helpers import adapters
-from morse.core.blenderapi import mathutils
 from morse.core.services import interruptible
 from morse.core.exceptions import MorseServiceError
 from morse_comms.srv import PlaceJoints

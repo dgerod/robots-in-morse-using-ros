@@ -5,6 +5,7 @@ from morse_helpers.settings import SimulationLocalSettings
 from morse_helpers.storage import FileStorage
 from morse_helpers.adapters import ROSRegister
 
+from morse.builder import Clock
 from morse.builder import Environment
 from morse.builder import FakeRobot
 from morse.builder.sensors import ArmaturePose
@@ -27,9 +28,19 @@ def start_simulation():
     arm.append(arm_pose)
     robot.append(arm)
 
+    # Clock to synchronize ROS with MORSE execution
+    # ----------------------------------------------------------
+
+    simulation_controller = FakeRobot()
+    clock = Clock()
+    simulation_controller.append(clock)
+
+    simulation_controller.add_default_interface('ros')
+    ROSRegister.add_topic(clock, '/clock')
+
     # Set-up ROS connection 
     # ----------------------------------------------------------
-    
+
     robot.add_default_interface('ros')
     #robot_namespace = "/" + robot.name + "/"
 
