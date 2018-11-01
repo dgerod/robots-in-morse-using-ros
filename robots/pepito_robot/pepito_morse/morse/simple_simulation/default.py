@@ -1,9 +1,5 @@
-# =======================================================================================
-# Pepito with ROS
-# =======================================================================================
-
 from morse_helpers import morse_local_config as local_settings
-local_settings.configure_simulation(__file__)
+local_settings.load(__file__)
 
 from morse_helpers.storage import FileStorage
 from morse_helpers.adapters import ROSRegister
@@ -13,7 +9,6 @@ from morse.builder import Jido
 from morse.builder.actuators import KukaLWR
 from morse.builder.sensors import ArmaturePose, Odometry
 
-# ---------------------------------------------------------------------------------------
 
 def create_simulation():
 
@@ -49,9 +44,5 @@ def create_simulation():
     env.set_camera_location([2.0, -2.0, 4.0])
     env.show_framerate(True)
 
-# ---------------------------------------------------------------------------------------
 
 create_simulation()
-
-# =======================================================================================
-

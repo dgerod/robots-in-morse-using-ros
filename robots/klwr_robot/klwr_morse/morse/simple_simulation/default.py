@@ -1,9 +1,6 @@
-# =======================================================================================
-# Kuka LWR with ROS
-# =======================================================================================
-
 from morse_helpers import morse_local_config as local_settings
-local_settings.configure_simulation(__file__)
+local_settings.load(__file__)
+
 from morse_helpers.storage import FileStorage
 from morse_helpers.adapters import ROSRegister
 
@@ -12,8 +9,7 @@ from morse.builder import FakeRobot
 from morse.builder.actuators import KukaLWR
 from morse.builder.sensors import ArmaturePose
 
-# ---------------------------------------------------------------------------------------
-        
+
 def create_simulation():
     
     # Create the robot
@@ -43,8 +39,5 @@ def create_simulation():
 
     env.show_framerate(True)
     
-# ---------------------------------------------------------------------------------------
 
 create_simulation()
-
-# =======================================================================================
