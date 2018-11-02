@@ -6,8 +6,8 @@ from morse_helpers.storage import FileStorage
 from morse_helpers.adapters import ROSRegister
 
 from morse.builder import Clock
-from morse.builder import Environment
-from morse.builder import FakeRobot
+from morse.builder import Environment, FakeRobot
+from morse.builder.actuators import Gripper
 from morse.builder.sensors import ArmaturePose
 
 from simple_simulation.builder.actuators import AdeptViperS650
@@ -26,6 +26,12 @@ def start_simulation():
     arm = AdeptViperS650()
     arm_pose = ArmaturePose()
     arm.append(arm_pose)
+
+    gripper = Gripper()
+    gripper.translate(x=0.255, z=0.41)# z=0.71-0.203)
+    gripper.properties(Angle=90.0, Distance=0.25)
+    arm.append(gripper)
+
     robot.append(arm)
 
     # Clock to synchronize ROS with MORSE execution
@@ -42,7 +48,6 @@ def start_simulation():
     # ----------------------------------------------------------
 
     robot.add_default_interface('ros')
-    #robot_namespace = "/" + robot.name + "/"
 
     ROSRegister.add_topic(arm_pose, 'adept_viper_s650/joint_states', 'StatePublisherForOatViper')
     ROSRegister.add_controller(arm, 'adept_viper_s650', 'ArmControllerForOatViper')
@@ -55,6 +60,5 @@ def start_simulation():
 
     env.set_camera_location([1.0, -1.0, 2.0])
     env.show_framerate(True)
-
 
 start_simulation()

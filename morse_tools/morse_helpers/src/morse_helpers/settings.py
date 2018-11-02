@@ -20,6 +20,7 @@ class SimulationLocalSettings:
         print("simulation ")
         print("  + name: ", self._settings['simulation']['name'])
         print("  + path: ", self._settings['simulation']['path'])
+        print("  + script: ", self._settings['simulation']['script'])
         print("models ")
         print("  + root: ", self._settings['models'])
         print("  + environments: ", self._settings['environments'])
@@ -39,8 +40,8 @@ class SimulationLocalSettings:
         self._settings = {
             'simulation': {
                 'name': settings._simulation_name,
-                'path': settings._simulation_path
-
+                'path': settings._simulation_path,
+                'script': settings._simulation_script
             },
             'models': settings._models_directory,
             'environments': settings._environments_directory,
