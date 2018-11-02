@@ -7,13 +7,13 @@ from morse_helpers.adapters import ROSRegister
 
 from morse.builder import Clock
 from morse.builder import Environment, FakeRobot
-from morse.builder.actuators import KukaLWR
+from morse.builder.actuators import KukaLWR, Gripper
 from morse.builder.sensors import ArmaturePose
 
 
 def create_simulation():
 
-    #local_settings._middleware_locations = local_settings._middleware_locations[1:]
+    # local_settings._middleware_locations = local_settings._middleware_locations[1:]
     SimulationLocalSettings().show_info()
 
     # Create the robot
@@ -25,6 +25,12 @@ def create_simulation():
     arm = KukaLWR()
     arm_pose = ArmaturePose()
     arm.append(arm_pose)
+
+    gripper = Gripper()
+    gripper.translate(z=1.15)
+    gripper.properties(Angle=90.0, Distance=0.25)
+    arm.append(gripper)
+
     robot.append(arm)
 
     # Clock to synchronize ROS with MORSE execution
