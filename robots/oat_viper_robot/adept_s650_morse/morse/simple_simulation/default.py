@@ -52,7 +52,6 @@ def start_simulation():
 
     file_storage = FileStorage()
     env = Environment(file_storage.find("empty_world.blend"))
-
     env.set_camera_location([1.0, -1.0, 2.0])
     env.show_framerate(True)
 
