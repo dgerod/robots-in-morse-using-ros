@@ -5,17 +5,11 @@
 -->
 <robot name="kuka_lwr">
 
-    <group name="arm">
-        <joint name="kuka_joint_1" />
-        <joint name="kuka_joint_2" />
-        <joint name="kuka_joint_3" />
-        <joint name="kuka_joint_4" />
-        <joint name="kuka_joint_5" />
-        <joint name="kuka_joint_6" />
-        <joint name="kuka_joint_7" />
+    <group name="arm_default">
+        <chain base_link="kuka_link_footprint" tip_link="kuka_link_tcp" />
     </group>
 
-    <group_state name="home" group="arm">
+    <group_state name="home" group="arm_default">
         <joint name="kuka_joint_1" value="0" />
         <joint name="kuka_joint_2" value="0" />
         <joint name="kuka_joint_3" value="0" />
@@ -25,7 +19,30 @@
         <joint name="kuka_joint_7" value="0" />
     </group_state>
 
-	<disable_collisions link1="kuka_link_1" link2="kuka_link_2" reason="Adjacent" />
+    <group name="base_to_tool0">
+        <chain base_link="kuka_link_footprint" tip_link="kuka_tool0" />
+    </group>
+    <group name="base_to_gripper">
+        <chain base_link="kuka_link_footprint" tip_link="kuka_gripper" />
+    </group>
+    <group name="base_to_flange">
+        <chain base_link="kuka_link_footprint" tip_link="kuka_flange" />
+    </group>
+    <group name="flange_to_gripper">
+        <chain base_link="kuka_flange" tip_link="kuka_gripper" />
+    </group>
+
+    <end_effector name="gripper" parent_link="kuka_flange" group="flange_to_gripper" />
+
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_1" reason="Never" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_2" reason="Never" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_3" reason="Never" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_4" reason="Never" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_5" reason="Never" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_6" reason="Never" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_7" reason="Adjacent" />
+    <disable_collisions link1="kuka_gripper" link2="kuka_link_base" reason="Never" />
+    <disable_collisions link1="kuka_link_1" link2="kuka_link_2" reason="Adjacent" />
     <disable_collisions link1="kuka_link_1" link2="kuka_link_4" reason="Never" />
     <disable_collisions link1="kuka_link_1" link2="kuka_link_5" reason="Never" />
     <disable_collisions link1="kuka_link_1" link2="kuka_link_6" reason="Never" />
