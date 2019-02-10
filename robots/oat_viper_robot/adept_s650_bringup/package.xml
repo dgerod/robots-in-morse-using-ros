@@ -4,7 +4,7 @@
 
     <version>0.0.1</version>
     <description>
-        The adept viper s650 bringup package
+        The adept_s650_bringup package
     </description>
     <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
     <license>BSD</license>

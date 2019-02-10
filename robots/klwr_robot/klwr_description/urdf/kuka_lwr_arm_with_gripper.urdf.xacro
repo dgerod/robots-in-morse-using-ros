@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="kuka_lwr" xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:property name="name" value="kuka" />
+    <xacro:include filename="arm.urdf.xacro" />
+    <xacro:include filename="extra_frames.urdf.xacro" />
+    <xacro:include filename="gripper.urdf.xacro" />
+
+    <xacro:arm/>
+    <xacro:extra_frames/>
+    <xacro:gripper/>
+
+</robot>

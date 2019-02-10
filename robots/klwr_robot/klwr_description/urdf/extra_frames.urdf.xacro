@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+<xacro:macro name="extra_frames">
+
+  <!-- ################################################################# -->
+  <!-- ROS Industrial standard frames -->
+  <!-- ################################################################# -->
+
+  <!-- ROS-Industrial BASE frame, base_link to Fanuc World Coordinates transform -->
+
+  <link name="${name}_base" />
+
+  <joint name="${name}_base_to_footprint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="${name}_link_footprint"/>
+    <child link="${name}_base"/>
+  </joint>
+
+
+  <!-- ROS-Industrial FLANGE frame, attachment point for EEF models -->
+
+  <link name="${name}_flange" />
+
+  <joint name="${name}_tcp_to_flange" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="${name}_link_tcp" />
+    <child link="${name}_flange" />
+  </joint>
+
+  <!-- ROS-Industrial TOOL-0 frame, all-zeros tool frame -->
+
+  <link name="${name}_tool0" />
+
+  <joint name="${name}_flange_to_tool0" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="${name}_flange" />
+    <child link="${name}_tool0" />
+  </joint>
+
+</xacro:macro>
+</robot>
