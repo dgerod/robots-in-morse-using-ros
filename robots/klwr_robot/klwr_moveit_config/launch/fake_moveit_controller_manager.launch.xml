@@ -1,9 +1,12 @@
 <launch>
 
+  <arg name="robot_configuration" default="default_arm" />
+  <arg name="dof"/>
+
   <!-- Set the param that trajectory_execution_manager needs to find the controller plugin -->
   <param name="moveit_controller_manager" value="moveit_fake_controller_manager/MoveItFakeControllerManager"/>
 
   <!-- The rest of the params are specific to this plugin -->
-  <rosparam file="$(find klwr_moveit_config)/config/default_arm/fake_controllers.yaml"/>
+  <rosparam file="$(find klwr_moveit_config)/config/$(arg robot_configuration)/fake_controllers.yaml"/>
 
 </launch>

@@ -1,5 +1,7 @@
 <launch>
 
+  <arg name="robot_configuration" default="default_arm" />
+
   <!-- This argument must specify the list of .cfg files to process for benchmarking -->
   <arg name="cfg" />
 
@@ -15,8 +17,8 @@
 
   <!-- Start Benchmark Executable -->
   <node name="$(anon moveit_benchmark)" pkg="moveit_ros_benchmarks" type="moveit_run_benchmark" args="$(arg cfg) --benchmark-planners" respawn="false" output="screen">
-    <rosparam command="load" file="$(find klwr_moveit_config)/config/default_arm/kinematics.yaml"/>
-    <rosparam command="load" file="$(find klwr_moveit_config)/config/default_arm/ompl_planning.yaml"/>
+    <rosparam command="load" file="$(find klwr_moveit_config)/config/$(arg robot_configuration)/kinematics.yaml"/>
+    <rosparam command="load" file="$(find klwr_moveit_config)/config/$(arg robot_configuration)/ompl_planning.yaml"/>
   </node>
 
 </launch>

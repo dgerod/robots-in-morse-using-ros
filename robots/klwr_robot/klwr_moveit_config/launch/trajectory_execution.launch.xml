@@ -1,5 +1,7 @@
 <launch>
 
+  <arg name="robot_configuration" default="default_arm" />
+
   <!-- This file makes it easy to include the settings for trajectory execution  -->  
 
   <!-- Flag indicating whether MoveIt! is allowed to load/unload  or switch controllers -->
@@ -15,7 +17,9 @@
   
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
   <arg name="moveit_controller_manager" default="robot" />
-  <include file="$(find klwr_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml" />
+  <include file="$(find klwr_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml">
+    <arg name="robot_configuration" value="$(arg robot_configuration)"/>
+  </include>
   
 </launch>
 

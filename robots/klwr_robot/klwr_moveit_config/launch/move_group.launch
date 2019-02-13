@@ -1,6 +1,10 @@
 <launch>
 
-  <include file="$(find klwr_moveit_config)/launch/planning_context.launch" />
+  <arg name="robot_configuration" default="default_arm" />
+
+  <include file="$(find klwr_moveit_config)/launch/planning_context.launch" >
+    <arg name="robot_configuration" value="$(arg robot_configuration)"/>
+  </include>
 
   <!-- GDB Debug Option -->
   <arg name="debug" default="false" />
