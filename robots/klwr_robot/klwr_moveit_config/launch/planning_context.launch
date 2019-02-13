@@ -16,17 +16,17 @@
    -->
 
   <!-- Load robot description (URDF and SRDUF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find klwr_description)/urdf/kuka_lwr_arm_with_gripper.urdf"/>
-  <param name="$(arg robot_description)_semantic" textfile="$(find klwr_moveit_config)/config/kuka_lwr_with_gripper.srdf" />
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find klwr_description)/urdf/default_arm/kuka_lwr_only_arm.urdf"/>
+  <param name="$(arg robot_description)_semantic" textfile="$(find klwr_moveit_config)/config/default_arm/kuka_lwr.srdf" />
   
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
-    <rosparam command="load" file="$(find klwr_moveit_config)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find klwr_moveit_config)/config/default_arm/joint_limits.yaml"/>
   </group>
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
-    <rosparam command="load" file="$(find klwr_moveit_config)/config/kinematics.yaml"/>
+    <rosparam command="load" file="$(find klwr_moveit_config)/config/default_arm/kinematics.yaml"/>
   </group>
   
 </launch>

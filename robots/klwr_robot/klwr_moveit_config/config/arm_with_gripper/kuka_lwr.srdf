@@ -5,11 +5,11 @@
 -->
 <robot name="kuka_lwr">
 
-    <group name="arm_default">
+    <group name="default">
         <chain base_link="kuka_link_footprint" tip_link="kuka_link_tcp" />
     </group>
 
-    <group_state name="home" group="arm_default">
+    <group_state name="home" group="default">
         <joint name="kuka_joint_1" value="0" />
         <joint name="kuka_joint_2" value="0" />
         <joint name="kuka_joint_3" value="0" />

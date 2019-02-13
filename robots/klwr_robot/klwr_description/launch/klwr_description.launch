@@ -1,4 +1,4 @@
 <launch>
     <!-- send kuka LWR urdf to param server -->
-    <param name="robot_description" command="cat $(find klwr_description)/urdf/kuka_lwr.urdf" />
+    <param name="robot_description" command="cat $(find klwr_description)/urdf/default_arm/kuka_lwr_only_arm.urdf" />
 </launch>
