@@ -1,5 +1,5 @@
 import os.path
-from morse_helpers import morse_local_config as settings
+from morse_helpers import morse_local_config as simulation_settings
 
 
 class FileStorage:
@@ -23,15 +23,15 @@ class FileStorage:
 
     def _find_robot_components(self, file_name):
 
-        directory_path = self._models_directory + "robots/"
+        directory_path = self._settings['models'] + "robots/"
         if os.path.isfile(directory_path + file_name):
             file_path = directory_path + file_name
         else:
-            directory_path = self._models_directory + "actuators/"
+            directory_path = self._settings['models'] + "actuators/"
             if os.path.isfile(directory_path + file_name):
                 file_path = directory_path + file_name
             else:
-                directory_path = self._models_directory + "sensors/"
+                directory_path = self._settings['models'] + "sensors/"
                 if os.path.isfile(directory_path + file_name):
                     file_path = directory_path + file_name
                 else:
@@ -41,9 +41,9 @@ class FileStorage:
 
     def _find_environment(self, file_name):
 
-        directory_path = self._environments_directory
+        directory_path = self._settings['environments']
         if os.path.isfile(directory_path + file_name):
-            file_path = self._environments_directory + file_name
+            file_path = directory_path + file_name
         else:
             file_path = None
 
@@ -51,23 +51,25 @@ class FileStorage:
 
     def _find_object(self, file_name):
 
-        directory_path = self._objects_directory
+        directory_path = self._settings['objects']
         if os.path.isfile(directory_path + file_name):
-            file_path = self._objects_directory + file_name
+            file_path = directory_path + file_name
         else:
             file_path = None
 
         return file_path
 
     def _load(self):
-        self._simulation_path = settings._simulation_path
-        self._models_directory = settings._models_directory
 
-        self._environments_directory = settings._environments_directory
-        self._objects_directory = settings._objects_directory
+        self._settings = {
+            'models': simulation_settings.get_settings().models_directory,
+            'environments': simulation_settings.get_settings().environments_directory,
+            'objects': simulation_settings.get_settings().objects_directory,
+        }
 
     @staticmethod
     def _add_extension(file_name):
+
         if file_name.endswith(".blend"):
             file_name = file_name
         else:

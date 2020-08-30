@@ -1,5 +1,5 @@
 import json
-import morse_helpers.morse_local_config as settings
+from morse_helpers import morse_local_config as simulation_settings
 
 
 class SimulationLocalSettings:
@@ -14,6 +14,7 @@ class SimulationLocalSettings:
         return self._settings
 
     def show_info(self):
+
         print("\n---------------------------------------------")
         print("-         SIMULATION LOCAL SETTINGS         -")
         print("---------------------------------------------")
@@ -37,14 +38,15 @@ class SimulationLocalSettings:
         print("---------------------------------------------\n")
 
     def _load(self):
+
         self._settings = {
             'simulation': {
-                'name': settings._simulation_name,
-                'path': settings._simulation_path,
-                'script': settings._simulation_script
+                'name': simulation_settings.get_settings().simulation_name,
+                'path': simulation_settings.get_settings().simulation_path,
+                'script': simulation_settings.get_settings().simulation_script
             },
-            'models': settings._models_directory,
-            'environments': settings._environments_directory,
-            'objects': settings._objects_directory,
-            'middleware': settings._middleware_locations,
+            'models': simulation_settings.get_settings().models_directory,
+            'environments': simulation_settings.get_settings().environments_directory,
+            'objects': simulation_settings.get_settings().objects_directory,
+            'middleware': simulation_settings.get_settings().middleware_locations,
         }
