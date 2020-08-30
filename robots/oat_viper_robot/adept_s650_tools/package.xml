@@ -10,8 +10,9 @@
 
     <buildtool_depend>catkin</buildtool_depend>
 
-    <run_depend>adept_driver</run_depend>
+    <run_depend>adept_s650_support</run_depend>
     <run_depend>adept_s650_moveit</run_depend>
     <run_depend>adept_s650_morse</run_depend>
+    <run_depend>adept_driver</run_depend>
 
 </package>

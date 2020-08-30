@@ -1,5 +1,5 @@
 <launch>
-  
+
   <include file="$(find adept_s650_moveit_config)/launch/start_moveit_for_robot_in_morse.launch"/>
                   
 </launch>

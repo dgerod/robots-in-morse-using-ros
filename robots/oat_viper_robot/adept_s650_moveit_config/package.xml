@@ -4,7 +4,8 @@
 
   <version>0.2.0</version>
   <description>
-      An automatically generated package with all the configuration and launch files for using the adept_viper_s650 with the MoveIt! Motion Planning Framework
+      An automatically generated package with all the configuration and launch files for using the adept_viper_s650
+      with the MoveIt! Motion Planning Framework
   </description>
   <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
   <license>BSD</license>

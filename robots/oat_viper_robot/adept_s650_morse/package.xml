@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package>
-    <name>adept_s659_morse</name>
+    <name>adept_s650_morse</name>
     
     <version>0.0.1</version>
     <description>
-        The adept_s659_morse package
+        The adept_s650_morse package
     </description>
     <maintainer email="dgerod@xyz-lab.org.es">Diego Escudero</maintainer>
     <license>BSD</license>

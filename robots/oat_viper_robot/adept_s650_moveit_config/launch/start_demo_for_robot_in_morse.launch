@@ -1,43 +1,34 @@
 <launch>
 
-  <!-- By default, we do not start a database (it can be large) -->
-  <arg name="db" default="false" />
-  <!-- Allow user to specify database location -->
-  <arg name="db_path" default="$(find klwr_moveit_config)/default_warehouse_mongo_db" />
-  <!-- By default, we are not in debug mode -->
-  <arg name="debug" default="false" />
-  
-  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
-  <include file="$(find adept_s650_moveit_config)/launch/planning_context.launch">
-    <arg name="load_robot_description" value="true"/>
-  </include>
+    <param name ="/use_sim_time" value="true"/>
 
-  <!-- If needed, broadcast static tf for robot root -->
-  
-  <!-- 'joint_state_publisher' is up but 'robot_state_publisher' is not -->
-  <!-- The 'robot_state_publisher' node is not up because Morse don't use it -->
-  <!--  
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="/use_gui" value="false"/>
-  </node>
-  -->
-  
-  <arg name="/joint_states" />
-  <remap from="/joint_states" to="/adept_viper_s650/joint_states"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
-  
-  <!-- Run the main MoveIt executable -->
-  <include file="$(find adept_s650_moveit_config)/launch/move_group.launch">
-    <arg name="allow_trajectory_execution" value="true"/>
-    <arg name="fake_execution" value="false"/>
-    <arg name="info" value="true"/>
-    <arg name="debug" value="$(arg debug)"/>
-  </include>
-  
-  <!-- RVIZ application -->
-  <include file="$(find adept_s650_moveit_config)/launch/moveit_rviz.launch">
-    <arg name="config" value="true"/>
-    <arg name="debug" value="$(arg debug)"/>
-  </include>
+    <arg name="db" default="false" />
+    <arg name="db_path" default="$(find adept_s650_moveit_config)/default_warehouse_mongo_db" />
+    <arg name="debug" default="false" />
+
+    <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+    <include file="$(find adept_s650_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+    </include>
+
+    <node pkg="node_tools" type="remap_joint_states.py" name="remap_joint_states"
+        args="ort_viper_s650/joint_states joint_states" output="screen" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        output="screen" />
+
+    <!-- Run the main MoveIt executable -->
+    <include file="$(find adept_s650_moveit_config)/launch/move_group.launch">
+        <arg name="allow_trajectory_execution" value="true"/>
+        <arg name="fake_execution" value="false"/>
+        <arg name="info" value="true"/>
+        <arg name="debug" value="$(arg debug)"/>
+    </include>
+
+    <!-- RVIZ application -->
+    <include file="$(find adept_s650_moveit_config)/launch/moveit_rviz.launch">
+        <arg name="config" value="true"/>
+        <arg name="debug" value="$(arg debug)"/>
+    </include>
 
 </launch>

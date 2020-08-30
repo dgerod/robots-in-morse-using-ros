@@ -1,6 +1,6 @@
 controller_list:
 
-  - name: fake_adept_s650
+  - name: fake_ort_viper_s650
     joints:
       - joint_1
       - joint_2
