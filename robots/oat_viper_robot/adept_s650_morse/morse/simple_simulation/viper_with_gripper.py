@@ -1,5 +1,5 @@
-from morse_helpers import morse_local_config as local_settings
-local_settings.load(__file__)
+from morse_helpers import initialize
+initialize(__file__)
 
 import math
 from morse_helpers.settings import SimulationLocalSettings
